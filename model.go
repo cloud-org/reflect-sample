@@ -118,7 +118,7 @@ func (m *ModelMethod) FillTimeField(data map[string]interface{}) {
 	optData(data, "mtime", time.Now())
 }
 
-func (m *ModelMethod) Interface2json(tagName string) map[string]interface{} {
+func (m *ModelMethod) Interface2json(inter interface{}, tagName string) map[string]interface{} {
 	defer func() {
 		if err := recover(); err != nil {
 			log.Printf("interface2json err: %v\n", err)
@@ -126,12 +126,12 @@ func (m *ModelMethod) Interface2json(tagName string) map[string]interface{} {
 		return
 	}()
 	data := make(map[string]interface{})
-	t := reflect.TypeOf(m.MetaModel)
+	t := reflect.TypeOf(inter)
 	if t.Kind() == reflect.Ptr { // non-struct num field https://www.codenong.com/cs109293647/
 		t = t.Elem()
 		log.Printf("t kind is %v\n", t.Kind())
 	}
-	v := reflect.ValueOf(m.MetaModel)
+	v := reflect.ValueOf(inter)
 	//v = reflect.Indirect(v) // 等价于下面的
 	if v.Kind() == reflect.Ptr {
 		v = v.Elem()
@@ -155,7 +155,7 @@ func (m *ModelMethod) ValidateAnd2json(data interface{}) (map[string]interface{}
 		return nil, err
 	}
 	// TODO: 暂定 json tag
-	return m.Interface2json("json"), nil
+	return m.Interface2json(data, "json"), nil
 }
 
 func (m *ModelMethod) InsertOne(ctx context.Context, inter interface{}) (interface{}, error) {

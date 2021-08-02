@@ -68,7 +68,7 @@ func TestModelMethod_Interface2json(t *testing.T) {
 	//var hello Hello
 	hello := NewHello("panda", 1)
 	m := NewModelMethod(nil, "hello", hello, nil)
-	// 进行数据的补变动 然后进行结构体的校验
+	// 进行数据的变动 然后进行结构体的校验
 	data, err := m.ValidateAnd2json(hello)
 	if err != nil {
 		t.Error(err)
