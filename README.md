@@ -2,20 +2,10 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [go-template](#go-template)
-  - [feature](#feature)
-  - [TODO](#todo)
+- [reflect-sample](#reflect-sample)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## go-template
+## reflect-sample
 
-### feature
-
-- go file add license
-- go file format and auto import
-- markdown file add toc
-
-### TODO
-
-- [ ] Makefile
+反射的使用案例，通用 mongo 操作类
